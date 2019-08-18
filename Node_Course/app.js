@@ -1,14 +1,7 @@
-var express = require('express');
-var app = express();
-app.set('view engine', 'ejs');
-
-app.get('/tecnologia', (req, res) => {
-    res.render("secao/tecnologia");
-});
-
-app.get('/', (req, res) => {
-    res.render("home");
-});
+var app = require('./config/server');
+var routeNoticias = require('./app/routes/noticias')(app);
+var routeHome = require('./app/routes/home')(app);
+var routeFormAddNoticia = require('./app/routes/formulario_inclusao_noticia')(app);
 
 app.listen(3000, () => {
     console.log('Server On');
