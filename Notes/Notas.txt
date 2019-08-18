@@ -1,17 +1,21 @@
-Comando para iniciar o serviÁo => node arquivo.js
+Comando para iniciar o servi√ßo => node arquivo.js
 
 Iniciar o npm no projeto
 > Comando para iniciar o npm => npm init
-> entry point => ContÈm a lÛgica principal do modulo, È o ponto de entrada para ser utilizado como biblioteca.
+> entry point => Cont√©m a l√≥gica principal do modulo, √© o ponto de entrada para ser utilizado como biblioteca.
 
 Instalar o express no projeto
 > Comando para instalar => npm install express --save
-> --save faz com que o express fique de fato salvo no projeto e n„o apenas tempor·rio.
+> --save faz com que o express fique de fato salvo no projeto e n√£o apenas tempor√°rio.
 
 Instalar o ejs no projeto
 > Comando para instalar => npm install ejs --save
-> --save faz com que o ejs fique de fato salvo no projeto e n„o apenas tempor·rio.
+> --save faz com que o ejs fique de fato salvo no projeto e n√£o apenas tempor√°rio.
 
 Instalar o nodemon no projeto
 > Comando para instalar => npm install -g nodemon
-> Comando para iniciar o serviÁo com nodemon => nodemon arquivo
+> Comando para iniciar o servi√ßo com nodemon => nodemon arquivo
+
+Instalar o modulo do mysql
+> Comando para instalar => npm install mysql --save
+> --save faz com que o mysql fique de fato salvo no projeto e n√£o apenas tempor√°rio.
