@@ -3,10 +3,32 @@
 		<head>
 			<meta charset="utf-8"/>
 			<title>Notícias</title>
+			<style>
+				table, tr, th, td {
+					border: black solid 1px;
+					border-collapse: collapse;
+					text-align: center;
+				}
+			</style>
 		</head>
 	<body>
 
 		<h1>Notícias</h1>
+
+		<table>
+			<tr>
+				<th>Id da Notícia</th>
+				<th>Título</th>
+				<th>Notícia</th>
+			</tr>
+			<% for (var i = 0; i < noticias.length; i++) { %>
+			<tr>
+				<td><%= noticias[i].id_noticia %></td>
+				<td><%= noticias[i].titulo %></td>
+				<td><%= noticias[i].noticia %></td>
+			</tr>
+			<% } %>
+		</table>
 
 	</body>
 </html>
