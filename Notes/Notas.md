@@ -26,7 +26,10 @@
  - *Comando para instalar* => npm install consign --save
    - --save faz com que o consign fique de fato salvo no projeto e não apenas temporário.
  - Tem a a funcionalidade semelhante ao arquivo bundles do .NET, minifica os caminhos dos arquivos e unifia tudo em apenas uma chamada.
-
-
+ ***
+ **Instalar o body-parser**
+- *Comando para instalar* => npm install body-parser --save
+   - --save faz com que o body-parser fique de fato salvo no projeto e não apenas temporário.
+- O body-parser é um middleware
 
 
