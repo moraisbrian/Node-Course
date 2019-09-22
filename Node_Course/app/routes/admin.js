@@ -4,7 +4,13 @@ module.exports = function (application) {
     });
 
     application.post('/noticias/salvar', function (req, res) {
-        var noticias = req.body;
-        res.send(noticias);
+        var noticia = req.body;
+
+        var connection = application.config.dbConnection();
+        var noticiasModel = application.app.models.noticiasModel;
+
+        noticiasModel.salvarNoticias(noticia, connection, function (error, result) {
+            res.redirect('/noticias');
+        });
     });
 }
