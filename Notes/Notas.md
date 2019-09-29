@@ -31,5 +31,11 @@
 - *Comando para instalar* => npm install body-parser --save
    - --save faz com que o body-parser fique de fato salvo no projeto e não apenas temporário.
 - O body-parser é um middleware
+***
+ **Instalar o express-validator**
+- *O conteúdo do courso a respeito deste item está obsoleto, o framework sofreu diversas modificações.*
+- *Comando para instalar* => npm install express-validator --save
+   - --save faz com que o express-validator fique de fato salvo no projeto e não apenas temporário.
+- O express-validator é um middleware
 
 
