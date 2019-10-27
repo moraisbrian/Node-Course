@@ -122,12 +122,6 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			var socket = io('http://localhost');
-<<<<<<< HEAD
-			socket.emit('msgParaCliente', function (data){
-				var html = '<div class="dialog">';
-					html += '<h4>' + data.apelido + '<h4>';
-					html += '<>'
-=======
 			socket.on('msgParaCliente', function (data){
 				var html = '<div class="dialogo">';
 					html += '<h4>' + data.apelido + '</h4>';
@@ -135,7 +129,6 @@
 					html += '</div>';
 					console.log(html);
 				$('#dialogos').append(html);
->>>>>>> 9927529bb2f41daba7bf0c8304bb0682be618e96
 			});
 		</script>
 	</body>

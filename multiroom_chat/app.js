@@ -10,11 +10,8 @@ app.set('io', io);
 
 io.on('connection', function (socket){
     console.log('conectou');
-<<<<<<< HEAD
-=======
 
     socket.on('disconnect', function(){
         console.log('desconectou');
-    })
->>>>>>> 9927529bb2f41daba7bf0c8304bb0682be618e96
+    });
 });
