@@ -10,14 +10,14 @@
 
 ### Operadores
 
-| SQL    | MongoDB  |
-| :----: | :----:   |
-| =      | $eq      |
-| >      | $gt      |
-| >=     | $gte     |
-| <      | $lt      |
-| <=     | $ltr     |
-| !=/<>  | $ne      |
+| SQL    | MongoDB |
+| :----: | :----:  |
+| =      | $eq     |
+| >      | $gt     |
+| >=     | $gte    |
+| <      | $lt     |
+| <=     | $ltr    |
+| !=/<>  | $ne     |
 
 ***
 
@@ -42,3 +42,13 @@
     - **db.nome_colecao.find({chave: {operador: valor}}).pretty()**
     comando com restrição.
         - Exemplo: db.alunos.find({nome: {$eq: "Fulano"}}).pretty()
+
+- **db.nome_colecao.update({parametros para atualizacao}, {$set}, {multi: false})** update de registro.
+    - Exemplo: db.alunos.update({nome: "José"}, {$set: {nome: "Antonio"}}, {multi: false})
+    - O parametro multi quando false executa apenas na primeira ocorrencia, caso esteja true execulta em todas.
+    - É possivel fazer um update com o *save*, porém, é necessário passar o id do registro, caso não seja encontrado é criado um novo registro.
+
+- **db.nome_colecao.remove({parametros para exclusao}, false)** exclusão de registro.
+    - Exemplo: db.aluno.remove({nome: "Fulano", idade: {$gt: 30}}, false)
+    - O primeiro parametro é semelhante ao where do sql.
+    - O segundo parametro quando true ou 1 ira excluir apenas a primeira ocorrencia. Quando false ou 0 ou omitido ira excluir todas as ocorrencias.
