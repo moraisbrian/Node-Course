@@ -37,5 +37,11 @@
 ***
 **Instalar o socket.io**
 - *Comando para instalar* => npm install socket.io --save
+***
+**Instalar o modulo do mongoDb**
+- *Comando para instalar* => npm install mongodb --save
+***
+**Instalar o modulo do express-session**
+- *Comando para instalar* => npm install express-session --save
 
 
