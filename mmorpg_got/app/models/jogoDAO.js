@@ -49,7 +49,7 @@ JogoDAO.prototype.acao = function (acao) {
 
             mongoclient.close();
         });
-    });;
+    });
 }
 
 module.exports = function () {
