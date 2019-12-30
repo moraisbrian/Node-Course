@@ -37,7 +37,12 @@ module.exports.pergaminhos = function (application, req, res) {
         res.send('Necessário fazer login');
         return;
     }
-    res.render('pergaminhos', { validacao: {} });
+    var connection = application.config.dbConnection;
+    var jogoDAO = new application.app.models.jogoDAO(connection);
+
+    var usuario = req.session.usuario;
+
+    jogoDAO.getAcoes(usuario, res);
 }
 
 module.exports.ordenar_acao_sudito = function (application, req, res) {
