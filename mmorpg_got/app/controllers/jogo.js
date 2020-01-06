@@ -1,76 +1,90 @@
-module.exports.jogo = function (application, req, res) {
-    if (req.session.autorizado !== true) {
-        res.send('Necessário fazer login');
-        return;
-    }
+module.exports.jogo = function(application, req, res){
+	if(req.session.autorizado !== true){
+		res.send('Usuário precisa fazer login');
+		return;	
+	}
 
-    var msg = '';
-    if (req.query.msg != ''){
-        msg = req.query.msg;
-    }
+	var msg = '';
+	if(req.query.msg != ''){
+		msg = req.query.msg;
+	}
 
-    var usuario = req.session.usuario;
-    var casa = req.session.casa;
-    var connection = application.config.dbConnection;
-    var jogoDAO = new application.app.models.jogoDAO(connection);
+	var usuario = req.session.usuario;
+	var casa = req.session.casa;
 
-    jogoDAO.iniciaJogo(res, usuario, casa, msg);
-    
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	JogoDAO.iniciaJogo(res, usuario, casa, msg);
+	
 }
 
-module.exports.sair = function (application, req, res) {
-    req.session.destroy(function (err){
-        res.render('index', { validacao: {} });
-    })
+module.exports.sair = function(application, req, res){
+
+	req.session.destroy( function(err){
+		res.render("index", {validacao: {}});
+	});
 }
 
-module.exports.suditos = function (application, req, res) {
-    if (req.session.autorizado !== true) {
-        res.send('Necessário fazer login');
-        return;
-    }
-    res.render('aldeoes', { validacao: {} });
+module.exports.suditos = function(application, req, res){
+	if(req.session.autorizado !== true){
+		res.send('Usuário precisa fazer login');
+		return;	
+	}
+
+	res.render("aldeoes", {validacao: {}});
 }
 
-module.exports.pergaminhos = function (application, req, res) {
-    if (req.session.autorizado !== true) {
-        res.send('Necessário fazer login');
-        return;
-    }
-    var connection = application.config.dbConnection;
-    var jogoDAO = new application.app.models.jogoDAO(connection);
+module.exports.pergaminhos = function(application, req, res){
+	if(req.session.autorizado !== true){
+		res.send('Usuário precisa fazer login');
+		return;	
+	}
 
-    var usuario = req.session.usuario;
 
-    jogoDAO.getAcoes(usuario, res);
+	/* recuperar as acoes inseridas no banco de dados */
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	var usuario = req.session.usuario;
+
+	JogoDAO.getAcoes(usuario, res);
+
 }
 
-module.exports.ordenar_acao_sudito = function (application, req, res) {
-    if (req.session.autorizado !== true) {
-        res.send('Necessário fazer login');
-        return;
-    }
-    
-    var dadosForm = req.body;
+module.exports.ordenar_acao_sudito = function(application, req, res){
+	if(req.session.autorizado !== true){
+		res.send('Usuário precisa fazer login');
+		return;	
+	}
+	
+	var dadosForm = req.body;
 
-    var erros = [];
-    if (dadosForm.acao == '' || dadosForm.acao == null){
-        erros.push('Ação deve ser informada');
-    }
-    if (dadosForm.quantidade == '' || dadosForm.quantidade == null){
-        erros.push('Quantidade deve ser informada');
-    }
-    
-    if (erros.length > 0){
-        res.redirect('jogo?msg=A');
-        return;
-    }
+	req.assert('acao', 'Ação deve ser informada').notEmpty();
+	req.assert('quantidade', 'Quantidade deve ser informada').notEmpty();
 
-    var connection = application.config.dbConnection;
-    var jogoDAO = new application.app.models.jogoDAO(connection);
+	var erros = req.validationErrors();
 
-    dadosForm.usuario = req.session.usuario;
-    jogoDAO.acao(dadosForm);
+	if(erros){
+		res.redirect('jogo?msg=A');
+		return;
+	}
 
-    res.redirect('jogo?msg=B')
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	dadosForm.usuario = req.session.usuario;
+	JogoDAO.acao(dadosForm);
+
+	res.redirect('jogo?msg=B');
+}
+
+module.exports.revogar_acao = function(application, req, res){
+	var url_query = req.query;
+	
+	var connection = application.config.dbConnection;
+	var JogoDAO = new application.app.models.JogoDAO(connection);
+
+	var _id = url_query.id_acao;
+	JogoDAO.revogarAcao(_id, res);
 }
